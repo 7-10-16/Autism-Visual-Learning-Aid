@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { Component, useState } from 'react';
 import { Button, View, Text, TouchableOpacity } from 'react-native';
 import { TouchableOpacity as TouchableOpacityGesture } from 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import * as Speech from 'expo-speech';
 
 import { styles } from './config/componentColourPalette.js';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -13,19 +14,58 @@ import ProfileScreen from './screens/ProfileScreen';
 
 //Starting screen of app FOR NOW
 function HomeScreen({ navigation }) {
+
+  // Example of how to use the speak method from Speech
+  // const speak = () => {
+  //   const thingToSay = '1';
+  //   Speech.speak(thingToSay);
+  // };
+
+  // Component to display a touchable text field with text to speech capability
+  // params{ 
+  // phrase (what to say with Speech)
+  // text (what text is displayed) 
+  // }
+  class TTSText extends Component {
+    render() {
+      return (
+        <TouchableOpacity onPress={Speech.speak(this.props.phrase)}>
+          <Text style={this.props.style} onPress={()=>Speech.speak(this.props.phrase) } >{this.props.text}</Text>
+        </TouchableOpacity>
+      )
+    };
+  }
+
+  // Component to only use text to speech
+  class Say extends Component {
+    render() {
+      return (
+        <TouchableOpacity onPress={Speech.speak(this.props.text)}>
+          <Text onPress={()=>Speech.speak(this.props.text) } />
+        </TouchableOpacity>
+      )
+    };
+  }
+
+
+
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-    <Text style={{ fontSize: 26, fontWeight: 'medium' }}>Welcome back</Text>
-    <Text style={{fontSize: 26, fontWeight: 'medium', color: '#00cc00'}}>USERNAME!</Text>
+      <TTSText style={{ fontSize: 26, fontWeight: 'medium'}} text="Welcome Back" phrase="Welcome Back"/>
+      <TTSText style={{ fontSize: 26, fontWeight: 'medium', color: '#00cc00'}} text="Nathan!" phrase="Nathan!"/>
 
-     <TouchableOpacity style ={styles.lightButton} onPress = {() => {navigation.navigate('Categories')}}>
-                <Text style={{margin: 10, fontSize: 40}}>Quiz</Text>
+      <Say text="What would you like to do?"/>
+      
+            <TouchableOpacity style ={styles.lightButton} onPress = {() => {navigation.navigate('Categories')}}>
+            <TTSText style={{ fontSize: 26, fontWeight: 'medium', color: '#00cc00'}} text="Quiz" phrase="take a quiz?"/>
                 <Ionicons name='library-outline' size={50} style = {styles.darkIcon}></Ionicons>
             </TouchableOpacity>
 
+            <Say text="Or"/>
+            
             <View style={{flexDirection: 'row', marginTop: '10%'}}>
                 <TouchableOpacity style ={styles.darkButton} onPress = {() => {navigation.navigate('Profile')}}>
-                    <Text style={{margin: 10, fontSize: 40}}>Profile</Text>
+                <TTSText style={{ fontSize: 26, fontWeight: 'medium', color: 'white'}} text="Profile" phrase="View your profile"/>
                     <Ionicons name='ios-person-circle-outline' size={50} style = {styles.lightIcon}></Ionicons>
                 </TouchableOpacity>
             </View>
