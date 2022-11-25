@@ -23,7 +23,7 @@ function HomeScreen({ navigation }) {
       <TTSText style={{ fontSize: 26, fontWeight: 'medium', color: '#00cc00'}} text="Nathan!" phrase="Nathan!"/>
 
       <Say phrase="What would you like to do?"/>
-            <TouchableOpacity style ={styles.lightButton} onPress = {() => {Speech.speak("Quiz"); navigation.navigate("Categories")}}>
+            <TouchableOpacity style ={styles.lightButton} onPress = {() => {Speech.stop(); Speech.speak("Quiz"); navigation.navigate("Categories")}}>
             <TTSText style={{ fontSize: 26, fontWeight: 'medium', color: '#00cc00'}} text="Quiz" phrase="take a quiz?"/>
                 <Ionicons name='library-outline' size={50} style = {styles.darkIcon}></Ionicons>
             </TouchableOpacity>
@@ -31,7 +31,7 @@ function HomeScreen({ navigation }) {
             <Say phrase="Or"/>
             
             <View style={{flexDirection: 'row', marginTop: '10%'}}>
-                <TouchableOpacity style ={styles.darkButton} onPress = {() => {Speech.speak("Profile"); navigation.navigate("Profile") }}>
+                <TouchableOpacity style ={styles.darkButton} onPress = {() => {Speech.stop(); Speech.speak("Profile"); navigation.navigate("Profile") }}>
                 <TTSText style={{ fontSize: 26, fontWeight: 'medium', color: 'white'}} text="Profile" phrase="View your profile"/>
                     <Ionicons name='ios-person-circle-outline' size={50} style = {styles.lightIcon}></Ionicons>
                 </TouchableOpacity>
@@ -46,20 +46,20 @@ function CategoriesScreen({ navigation }) {
 
       <Say phrase="What category of quiz?"/>
 
-      <TouchableOpacity style ={styles.fruitButton} onPress = {() => {Speech.speak("Fruit Quiz"); navigation.navigate("Fruit")}}>
+      <TouchableOpacity style ={styles.fruitButton} onPress = {() => {Speech.stop(); Speech.speak("Fruit Quiz"); navigation.navigate("Fruit")}}>
                 <TTSText style={styles.buttonText} text="Fruit" phrase="Fruit"/>
                 <Ionicons name='nutrition' size={50} style = {styles.catIcon}></Ionicons>
       </TouchableOpacity>
-      <TouchableOpacity style ={styles.animalButton} onPress = {() => {Speech.speak("Animal Quiz"); navigation.navigate("Animal")}}>
+      <TouchableOpacity style ={styles.animalButton} onPress = {() => {Speech.stop(); Speech.speak("Animal Quiz"); navigation.navigate("Animal")}}>
           <TTSText style={styles.buttonText} text="Animal" phrase="Animal"/>
                   <Ionicons name='paw' size={50} style = {styles.catIcon}></Ionicons>
       </TouchableOpacity>
-      <TouchableOpacity style ={styles.randomButton} onPress = {() => {Speech.speak("Random Quiz"); navigation.navigate("Random")}}>
+      <TouchableOpacity style ={styles.randomButton} onPress = {() => {Speech.stop(); Speech.speak("Random Quiz"); navigation.navigate("Random")}}>
       <TTSText style={styles.buttonText} text="Random" phrase="Random"/>
                 <Ionicons name='help' size={50} style = {styles.catIcon}></Ionicons>
       </TouchableOpacity>
       <Say phrase="Or..."></Say>
-      <TouchableOpacity style ={styles.cHomeButton} onPress = {() => {Speech.speak("Home"); navigation.navigate('Home')}}>
+      <TouchableOpacity style ={styles.cHomeButton} onPress = {() => {Speech.stop(); Speech.speak("Home"); navigation.navigate('Home')}}>
                 <TTSText style={styles.buttonText} text="Home" phrase="Home"/>
                    <Ionicons name='home' size={50} style = {styles.catIcon}></Ionicons>
       </TouchableOpacity>
