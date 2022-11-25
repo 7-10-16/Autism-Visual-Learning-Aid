@@ -3,8 +3,8 @@ const express = require('express')
 const mysql = require('mysql2')
 const app = express()
 const cors = require("cors");
-app.use(cors());
-app.use(express.json());
+app.use(cors());app.use(express.json());
+const port = process.env.PORT || 19007
 
 const connection = mysql.createConnection(process.env.DATABASE_URL);
 connection.connect(function(err) {
@@ -23,7 +23,7 @@ connection.connect(function(err) {
     });
   });
 
-  //Route example of adding a user (Does not work, just an example of format)
+  //Route example of adding a user (Does not work)
   app.post('/create', (req, res) => {
     const name = req.body.name;
     const age = req.body.age;
@@ -36,3 +36,6 @@ connection.connect(function(err) {
         }    
       });
     });
+app.listen(port, () => {
+    console.log(`Example app listening at http://localhost:${port}`)
+  })

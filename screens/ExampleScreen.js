@@ -10,7 +10,7 @@ export default function HomeScreen({ navigation }) {
     const [users, setUsers] = React.useState([]);
 
     const addUser = () => {
-        axios.post('https://node-zstv.onrender.com/create', 
+        axios.post('https://node-server-udw2.onrender.com/create', 
         {
             name: name, 
             age: age
@@ -20,7 +20,7 @@ export default function HomeScreen({ navigation }) {
     }
 
     const getUsers = () => {
-        axios.get('https://node-zstv.onrender.com/users').then((response) => {
+        axios.get('https://node-server-udw2.onrender.com/users').then((response) => {
             console.log(response.data);
             setUsers(response.data);
         });
