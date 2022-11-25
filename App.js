@@ -15,6 +15,56 @@ import ProfileScreen from './screens/ProfileScreen';
 //Starting screen of app FOR NOW
 function HomeScreen({ navigation }) {
 
+  // available voices {
+//   "identifier": "com.apple.ttsbundle.siri_Gordon_en-AU_compact",
+//   "identifier": "com.apple.voice.compact.en-AU.Karen",
+//   "identifier": "com.apple.ttsbundle.siri_Catherine_en-AU_compact",
+//   "identifier": "com.apple.eloquence.en-GB.Rocko",
+//   "identifier": "com.apple.eloquence.en-GB.Shelley",
+//   "identifier": "com.apple.voice.compact.en-GB.Daniel",
+//   "identifier": "com.apple.ttsbundle.siri_Martha_en-GB_compact",
+//   "identifier": "com.apple.eloquence.en-GB.Grandma",
+//   "identifier": "com.apple.eloquence.en-GB.Grandpa",
+//   "identifier": "com.apple.eloquence.en-GB.Flo",
+//   "identifier": "com.apple.eloquence.en-GB.Eddy",
+//   "identifier": "com.apple.eloquence.en-GB.Reed",
+//   "identifier": "com.apple.eloquence.en-GB.Sandy",
+//   "identifier": "com.apple.ttsbundle.siri_Arthur_en-GB_compact",
+//   "identifier": "com.apple.voice.compact.en-IE.Moira",
+//   "identifier": "com.apple.voice.compact.en-IN.Rishi",
+//   "identifier": "com.apple.eloquence.en-US.Flo",
+//   "identifier": "com.apple.speech.synthesis.voice.Bahh",
+//   "identifier": "com.apple.speech.synthesis.voice.Albert",
+//   "identifier": "com.apple.speech.synthesis.voice.Fred",
+//   "identifier": "com.apple.speech.synthesis.voice.Hysterical",
+//   "identifier": "com.apple.speech.synthesis.voice.Organ",
+//   "identifier": "com.apple.speech.synthesis.voice.Cellos",
+//   "identifier": "com.apple.speech.synthesis.voice.Zarvox",
+//   "identifier": "com.apple.eloquence.en-US.Rocko",
+//   "identifier": "com.apple.eloquence.en-US.Shelley",
+//   "identifier": "com.apple.speech.synthesis.voice.Princess",
+//   "identifier": "com.apple.eloquence.en-US.Grandma",
+//   "identifier": "com.apple.eloquence.en-US.Eddy",
+//   "identifier": "com.apple.speech.synthesis.voice.Bells",
+//   "language": "en-US",
+//   "identifier": "com.apple.eloquence.en-US.Grandpa",
+//   "identifier": "com.apple.speech.synthesis.voice.Trinoids",
+//   "identifier": "com.apple.speech.synthesis.voice.Kathy",
+//   "identifier": "com.apple.eloquence.en-US.Reed",
+//   "identifier": "com.apple.speech.synthesis.voice.Boing",
+//   "identifier": "com.apple.speech.synthesis.voice.Whisper",
+//   "identifier": "com.apple.speech.synthesis.voice.Deranged",
+//   "identifier": "com.apple.speech.synthesis.voice.GoodNews",
+//   "identifier": "com.apple.ttsbundle.siri_Nicky_en-US_compact",
+//   "identifier": "com.apple.speech.synthesis.voice.BadNews",
+//   "identifier": "com.apple.ttsbundle.siri_Aaron_en-US_compact",
+//   "identifier": "com.apple.speech.synthesis.voice.Bubbles",
+//   "identifier": "com.apple.voice.compact.en-US.Samantha",
+//   "identifier": "com.apple.eloquence.en-US.Sandy",
+//   "identifier": "com.apple.speech.synthesis.voice.Junior",
+//   "identifier": "com.apple.speech.synthesis.voice.Ralph",
+//   "identifier": "com.apple.voice.compact.en-ZA.Tessa",
+// }
   // Example of how to use the speak method from Speech
   // const speak = () => {
   //   const thingToSay = '1';
@@ -29,8 +79,8 @@ function HomeScreen({ navigation }) {
   class TTSText extends Component {
     render() {
       return (
-        <TouchableOpacity onPress={Speech.speak(this.props.phrase)}>
-          <Text style={this.props.style} onPress={()=>Speech.speak(this.props.phrase) } >{this.props.text}</Text>
+        <TouchableOpacity onPress={Speech.speak(this.props.phrase, {voice: "com.apple.ttsbundle.siri_Catherine_en-AU_compact"})}>
+          <Text style={this.props.style} onPress={()=>Speech.speak(this.props.phrase, {voice: "com.apple.ttsbundle.siri_Catherine_en-AU_compact"}) } >{this.props.text}</Text>
         </TouchableOpacity>
       )
     };
@@ -40,28 +90,25 @@ function HomeScreen({ navigation }) {
   class Say extends Component {
     render() {
       return (
-        <TouchableOpacity onPress={Speech.speak(this.props.text)}>
-          <Text onPress={()=>Speech.speak(this.props.text) } />
-        </TouchableOpacity>
+          <Text onPress={Speech.speak(this.props.phrase, {voice: "com.apple.ttsbundle.siri_Catherine_en-AU_compact"})} />
       )
     };
   }
 
-
-
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+
+
       <TTSText style={{ fontSize: 26, fontWeight: 'medium'}} text="Welcome Back" phrase="Welcome Back"/>
       <TTSText style={{ fontSize: 26, fontWeight: 'medium', color: '#00cc00'}} text="Nathan!" phrase="Nathan!"/>
 
-      <Say text="What would you like to do?"/>
-      
+      <Say phrase="What would you like to do?"/>
             <TouchableOpacity style ={styles.lightButton} onPress = {() => {navigation.navigate('Categories')}}>
             <TTSText style={{ fontSize: 26, fontWeight: 'medium', color: '#00cc00'}} text="Quiz" phrase="take a quiz?"/>
                 <Ionicons name='library-outline' size={50} style = {styles.darkIcon}></Ionicons>
             </TouchableOpacity>
 
-            <Say text="Or"/>
+            {/* <Say phrase="Or"/> */}
             
             <View style={{flexDirection: 'row', marginTop: '10%'}}>
                 <TouchableOpacity style ={styles.darkButton} onPress = {() => {navigation.navigate('Profile')}}>
