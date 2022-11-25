@@ -3,7 +3,7 @@ import * as React from 'react';
 import { View, Text, Button } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
 
-export default function HomeScreen({ navigation }) {
+export default function ExampleScreen({ navigation }) {
 
     const [name, onChangeName] = React.useState("");
     const [age, onChangeAge] = React.useState(0);
@@ -50,7 +50,7 @@ export default function HomeScreen({ navigation }) {
                 title="Show Users"
                 color="#841584"
             />
-            <ul>
+            <Text>
                 {users.map(user => {
                     return (
                         //Each child in a list should have a unique "key" prop.
@@ -59,7 +59,7 @@ export default function HomeScreen({ navigation }) {
                         </li>
                         )
                 })}
-            </ul>    
+            </Text>    
         </View>
     
     );
