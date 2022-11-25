@@ -1,6 +1,21 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: "#fff",
+    },
+    header: {
+        flex: 0.05,
+        borderBottomColor: 'grey',
+        borderBottomWidth: 0.2,
+        flexDirection: 'row'
+    },
+    body: {
+        flex: 0.95, 
+        alignItems: 'center',
+        paddingTop: 50, 
+    },
 
     //Dark green button
     darkButton: {
@@ -104,7 +119,7 @@ const styles = StyleSheet.create({
         margin: 10, 
         fontSize: 40
 
-    }
+    },
 
 });
 

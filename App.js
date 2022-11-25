@@ -1,5 +1,5 @@
 import React, { Component, useState } from 'react';
-import { Button, View, Text, TouchableOpacity } from 'react-native';
+import { Button, View, Text, TouchableOpacity} from 'react-native';
 import { TouchableOpacity as TouchableOpacityGesture } from 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -16,27 +16,50 @@ import ProfileScreen from './screens/ProfileScreen';
 //Starting screen of app FOR NOW
 function HomeScreen({ navigation }) {
 
-  return (
-    <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+  const [count, setCount] = useState(0);
 
-      <TTSText style={{ fontSize: 26, fontWeight: 'medium'}} text="Welcome Back" phrase="Welcome Back"/>
-      <TTSText style={{ fontSize: 26, fontWeight: 'medium', color: '#00cc00'}} text="Nathan!" phrase="Nathan!"/>
+  return (    
+  <View style={styles.container}>
+    <View style={styles.header}>
+      <View>
+        <Button
+            onPress={Speech.stop()}
+            title="Text to speech: Enabled"
+          />
+      </View>
+      <View >
+        <Text>
+          <Button
+            onPress={Speech.pause}
+            title="||"
+          />
+          <Button
+            onPress={Speech.resume}
+            title="l>"
+          />
+        </Text>
+      </View>
+      </View>
+      <View style={styles.body}>
+        <TTSText style={{ fontSize: 26, fontWeight: 'medium'}} text="Welcome Back" phrase="Welcome Back"/>
+        <TTSText style={{ fontSize: 26, fontWeight: 'medium', color: '#00cc00'}} text="Nathan!" phrase="Nathan!"/>
 
-      <Say phrase="What would you like to do?"/>
-            <TouchableOpacity style ={styles.lightButton} onPress = {() => {Speech.stop(); Speech.speak("Quiz"); navigation.navigate("Categories")}}>
-            <TTSText style={{ fontSize: 26, fontWeight: 'medium', color: '#00cc00'}} text="Quiz" phrase="take a quiz?"/>
-                <Ionicons name='library-outline' size={50} style = {styles.darkIcon}></Ionicons>
-            </TouchableOpacity>
+        <Say phrase="What would you like to do?"/>
+              <TouchableOpacity style ={styles.lightButton} onPress = {() => {Speech.stop(); Speech.speak("Quiz"); navigation.navigate("Categories")}}>
+              <TTSText style={{ fontSize: 26, fontWeight: 'medium', color: '#00cc00'}} text="Quiz" phrase="take a quiz?"/>
+                  <Ionicons name='library-outline' size={50} style = {styles.darkIcon}></Ionicons>
+              </TouchableOpacity>
 
-            <Say phrase="Or"/>
-            
-            <View style={{flexDirection: 'row', marginTop: '10%'}}>
-                <TouchableOpacity style ={styles.darkButton} onPress = {() => {Speech.stop(); Speech.speak("Profile"); navigation.navigate("Profile") }}>
-                <TTSText style={{ fontSize: 26, fontWeight: 'medium', color: 'white'}} text="Profile" phrase="View your profile"/>
-                    <Ionicons name='ios-person-circle-outline' size={50} style = {styles.lightIcon}></Ionicons>
-                </TouchableOpacity>
-            </View>
-    </View>
+              <Say phrase="Or"/>
+              
+              <View style={{flexDirection: 'row', marginTop: '10%'}}>
+                  <TouchableOpacity style ={styles.darkButton} onPress = {() => {Speech.stop(); Speech.speak("Profile"); navigation.navigate("Profile") }}>
+                  <TTSText style={{ fontSize: 26, fontWeight: 'medium', color: 'white'}} text="Profile" phrase="View your profile"/>
+                      <Ionicons name='ios-person-circle-outline' size={50} style = {styles.lightIcon}></Ionicons>
+                  </TouchableOpacity>
+              </View>
+      </View>
+  </View>
   );
 }
 
