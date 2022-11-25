@@ -10,6 +10,8 @@ import FruitScreen from './screens/FruitScreen';
 import AnimalScreen from './screens/AnimalScreen';
 import RandomScreen from './screens/RandomScreen';
 import ProfileScreen from './screens/ProfileScreen';
+import ExampleScreen from './screens/ExampleScreen';
+
 
 //Starting screen of app FOR NOW
 function HomeScreen({ navigation }) {
@@ -28,6 +30,11 @@ function HomeScreen({ navigation }) {
                     <Text style={{margin: 10, fontSize: 40}}>Profile</Text>
                     <Ionicons name='ios-person-circle-outline' size={50} style = {styles.lightIcon}></Ionicons>
                 </TouchableOpacity>
+
+            <TouchableOpacity style ={styles.lightButton} onPress = {() => {navigation.navigate('Example')}}>
+                <Text style={{margin: 10, fontSize: 40}}>Example</Text>
+                <Ionicons name='library-outline' size={50} style = {styles.darkIcon}></Ionicons>
+            </TouchableOpacity>
             </View>
     </View>
   );
@@ -76,6 +83,7 @@ function App() {
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Categories" component={CategoriesScreen} />
+        <Stack.Screen name="Example" component={ExampleScreen} />
           <Stack.Group screenOptions={{headerShown: false, gestureEnabled: false}}>
             <Stack.Screen name="Fruit" component={FruitScreen} />
             <Stack.Screen name="Animal" component={AnimalScreen} />
