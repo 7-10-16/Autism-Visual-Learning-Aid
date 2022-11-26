@@ -36,6 +36,33 @@ connection.connect(function(err) {
         }    
       });
     });
+
+  //Posting photo object properties
+  app.post('/apipost', (req, res) => {
+    const name = req.body.name;
+    const img = req.body.img;
+    const category = req.body.category;
+    db.query('INSERT INTO object (object_name, object_img, category_ID) VALUES (?,?,?)',
+      [name, img, category], (err, result) => {
+        if (err) {
+          console.log(err)
+        } else {
+          res.json(req.body);
+        }    
+      });
+    });
+
+  //Pictures fetched by the Pexels API
+  app.get('/apiget', (req, res) => {
+    connection.query("SELECT * FROM object",(err, result) => {
+      if (err) {
+        console.log(err)
+      } else {
+        res.send(result)
+      }
+     });
+  });
+
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)
   })
