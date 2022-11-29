@@ -10,6 +10,7 @@ import {
     KeyboardAvoidingView,
   } from "react-native";
 import { styles } from "../config/componentColourPalette.js";
+import axios, { Axios } from "axios";
 
 
 export default function Reg({ navigation }) {
@@ -84,7 +85,20 @@ export default function Reg({ navigation }) {
         navigation.navigate("Home");
       }
     }
-  
+    
+    const addUser = () => {
+      axios.post('http://localhost:19007/register', 
+      {
+          firstName: firstName,
+          lastName: lastName,
+          age: age,
+          username: username,
+          password: password
+      }).then(() => {
+              Alert.alert("Success, Your account has been created")
+          });
+    }
+
     return (
       <KeyboardAvoidingView style={styles.container} behavior='padding'>
         <View style={{ width: "100%" }}>

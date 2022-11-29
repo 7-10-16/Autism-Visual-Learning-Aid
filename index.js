@@ -36,6 +36,21 @@ connection.connect(function(err) {
         }    
       });
     });
+
+  app.post('/register', (req, res) => {
+    const firstName = req.body.firstName;
+    const lastName = req.body.lastName;
+    const age = req.body.age;
+    const username = req.body.username;
+    const password = req.body.password;
+      
+      connection.query('INSERT INTO user (user_fname, user_lname,user_age,user_email,user_password) VALUES (?,?,?,?,?)',
+        [firstName,lastName,username,age,password], (err, result) => {
+         
+            res.json(req.body);
+           
+        });
+      });
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)
   })
