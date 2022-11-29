@@ -39,3 +39,15 @@ connection.connect(function(err) {
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)
   })
+
+    //Route example of getting all users
+    app.get('/fruits', (req, res) => {
+      connection.query("SELECT `item_ID` AS ID, `item_name` AS Name  FROM `item` WHERE category_id = 1;",(err, result) => {
+        if (err) {
+          console.log(err)
+        } else {
+          res.send(result)
+        }
+      });
+    });
+  
