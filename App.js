@@ -18,6 +18,7 @@ import ProfileScreen from "./screens/ProfileScreen";
 import ExampleScreen from "./screens/ExampleScreen";
 import LogIn from "./screens/LoginScreen.js";
 import Reg from "./screens/RegScreen.js";
+import Speech from "expo-speech";
 
 //Starting screen of app FOR NOW
 function HomeScreen({ navigation }) {
