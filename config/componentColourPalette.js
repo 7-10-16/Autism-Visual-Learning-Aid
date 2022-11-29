@@ -1,6 +1,21 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: "#fff",
+    },
+    header: {
+        flex: 0.05,
+        borderBottomColor: 'grey',
+        borderBottomWidth: 0.2,
+        flexDirection: 'row'
+    },
+    body: {
+        flex: 0.95, 
+        alignItems: 'center',
+        paddingTop: 50, 
+    },
 
     //Dark green button
     darkButton: {
@@ -105,6 +120,7 @@ const styles = StyleSheet.create({
         fontSize: 40
 
     },
+<<<<<<< HEAD
     codeText:{
         marginTop:10,
         alignSelf:'center',
@@ -157,6 +173,8 @@ const styles = StyleSheet.create({
         marginTop: "auto",
         resizeMode: "contain"
       }
+=======
+>>>>>>> 6c81d82ebd305abb8c0fa0146bc94079c00cafef
 
 });
 
