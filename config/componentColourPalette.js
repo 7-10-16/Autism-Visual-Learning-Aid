@@ -104,7 +104,59 @@ const styles = StyleSheet.create({
         margin: 10, 
         fontSize: 40
 
-    }
+    },
+    codeText:{
+        marginTop:10,
+        alignSelf:'center',
+        color:'green',
+        borderColor:'green',
+        borderWidth:4,
+        fontSize:20,
+        padding:5,
+        textAlign:'center'
+    
+      },
+    
+      
+      TextComponentStyle: {
+        borderRadius: 5,
+        borderWidth: 4,
+        borderColor: 'green',
+        
+        backgroundColor : 'white',
+        padding: 10,
+        
+        fontSize: 15,
+        
+        margin: 10
+        
+      },
+    
+      ButtonComponentStyle: { 
+        
+        width: "60%",
+        borderRadius: 25,
+        height: 50,
+        alignItems: "center",
+        justifyContent: "center",
+        marginTop:20,
+        backgroundColor: "green",
+        alignSelf:'center'
+        
+      },
+    
+      Img: {
+        borderRadius: 5,
+        borderWidth: 6,
+        borderColor: 'green',
+        height:'40%',
+        width:'80%',
+        padding: 10,
+        fontSize: 15,
+        alignSelf:'center',
+        marginTop: "auto",
+        resizeMode: "contain"
+      }
 
 });
 
