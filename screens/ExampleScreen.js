@@ -8,6 +8,7 @@ export default function ExampleScreen({ navigation }) {
     const [name, onChangeName] = React.useState("");
     const [age, onChangeAge] = React.useState(0);
     const [users, setUsers] = React.useState([]);
+    const [fruits, setFruits] = React.useState([]);
 
     const addUser = () => {
         axios.post('https://node-server-udw2.onrender.com/create', 
@@ -23,6 +24,13 @@ export default function ExampleScreen({ navigation }) {
         axios.get('https://node-server-udw2.onrender.com/users').then((response) => {
             console.log(response.data);
             setUsers(response.data);
+        });
+    }
+
+    const getFruits = () => {
+        axios.get('https://node-server-udw2.onrender.com/fruits').then((response) => {
+            console.log(response.data);
+            setFruits(response.data);
         });
     }
 
@@ -46,16 +54,16 @@ export default function ExampleScreen({ navigation }) {
                 color="#841584"
             />
             <Button
-                onPress={getUsers}
+                onPress={getFruits}
                 title="Show Users"
                 color="#841584"
             />
             <Text>
-                {users.map(user => {
+                {fruits.map(fruit => {
                     return (
                         //Each child in a list should have a unique "key" prop.
-                        <li key={user.user_ID}> 
-                            {user.user_fname} - {user.user_age} 
+                        <li key={fruit.ID}> 
+                            {fruit.name} - {fruit.fruit_age} 
                         </li>
                         )
                 })}
