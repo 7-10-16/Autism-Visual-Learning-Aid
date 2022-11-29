@@ -42,19 +42,31 @@ connection.connect(function(err) {
     const name = req.body.name;
     const img = req.body.img;
     const category = req.body.category;
-    db.query('INSERT INTO object (object_name, object_img, category_ID) VALUES (?,?,?)',
+    const saveToDb = () => {
+      connection.query('INSERT INTO item (item_name, item_img, category_id) VALUES (?,?,?)',
       [name, img, category], (err, result) => {
         if (err) {
           console.log(err)
         } else {
-          res.json(req.body);
+          res.status(201).json(req.body);
         }    
       });
+    }
+    connection.query("SELECT * FROM item",(err, result) => {
+      if (err) {
+        console.log(err)
+      } else {
+        const urls = result.map(item => {return item.item_img});
+        if(!urls.includes(img)) {
+          saveToDb()
+        }
+      }
+    });
     });
 
   //Pictures fetched by the Pexels API
   app.get('/apiget', (req, res) => {
-    connection.query("SELECT * FROM object",(err, result) => {
+    connection.query("SELECT * FROM item",(err, result) => {
       if (err) {
         console.log(err)
       } else {

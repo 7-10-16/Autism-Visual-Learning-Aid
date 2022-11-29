@@ -1,8 +1,9 @@
 import { createClient } from 'pexels';
 import axios from 'axios';
 import * as React from 'react';
+import { View, Text, Button } from 'react-native';
 
-function PexelsApi({navigation}){
+export default function PexelsApi({navigation}){
 
     const client = createClient('563492ad6f91700001000001a783e5f426914ffbae822164d5f56516');
     const query1 = 'Strawberries';
@@ -13,63 +14,64 @@ function PexelsApi({navigation}){
 
     // All requests made with the client will be authenticated
 
-    client.photos.search({ query1, per_page: 8 }).then(photos => {resStrawberries = photos});
-    client.photos.search({ query2, per_page: 8 }).then(photos => {resPeaches = photos});
-    client.photos.search({ query3, per_page: 8 }).then(photos => {resBananas = photos});
-
-    let jStrawberries = JSON.parse(resStrawberries);
-    let jPeaches = JSON.parse(resPeaches);
-    let jBananas = JSON.parse(resBananas);
+    client.photos.search({ query:query1, per_page: 8 }).then(photos => {resStrawberries = photos['photos'];});
+    client.photos.search({ query:query2, per_page: 8 }).then(photos => {resPeaches = photos['photos']});
+    client.photos.search({ query:query3, per_page: 8 }).then(photos => {resBananas = photos['photos']});
 
 
     const photosPost = () => {
 
-        jStrawberries.forEach(element => {
+        resStrawberries.forEach(element => {
             let name = 'strawberry';
             let url = element.src.tiny;
             let category = 1;               //Category 1 = 'Fruit'
 
-            axios.post('https://node-server-udw2.onrender.com/apipost', {
+            axios.post('http://localhost:19007/apipost', {
                 name : name,
                 img : url,
                 category : category
             }).then(() => {
-                console.log("success");
+                console.log("success!");
+            }).catch(err => {
+                console.log(err);
             });
         });
 
-        jPeaches.forEach(element => {
+        resPeaches.forEach(element => {
             let name = 'peach';
             let url = element.src.tiny;
             let category = 1;
 
-            axios.post('https://node-server-udw2.onrender.com/apipost', {
+            axios.post('http://localhost:19007/apipost', {
                 name : name,
                 img : url,
                 category : category
             }).then(() => {
-                console.log("success");
+                console.log("success!");
+            }).catch(err => {
+                console.log(err);
             });
         });
 
-        jBananas.forEach(element => {
+        resBananas.forEach(element => {
             let name = 'banana';
             let url = element.src.tiny;
             let category = 1;
 
-            axios.post('https://node-server-udw2.onrender.com/apipost', {
+            axios.post('http://localhost:19007/apipost', {
                 name : name,
                 img : url,
                 category : category
             }).then(() => {
-                console.log("success");
+                console.log("success!");
+            }).catch(err => {
+                console.log(err);
             });
         });
-
     }
 
     const photosGet = () => {
-        axios.get('https://node-server-udw2.onrender.com/apiget').then((response) => {
+        axios.get('http://localhost:19007/apiget').then((response) => {
             console.log(response.data);
             photosSet(response.data);
         });
@@ -79,19 +81,19 @@ function PexelsApi({navigation}){
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <Button
                 onPress={photosPost}
-                title="Request photos"
+                title="Request photos from Pexels"
                 color="#841584"
             />
             <Button
                 onPress={photosGet}
-                title="Get Photos"
+                title="Show photos from database"
                 color="#841584"
             />
 
             <Text>
                 {photos.map(photo => {
                     return (
-                        <img src={photo.object_img}></img>
+                        <img key={photo.item_img} src={photo.item_img}></img>
                         )
                 })}
             </Text>   

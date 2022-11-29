@@ -11,7 +11,7 @@ import AnimalScreen from './screens/AnimalScreen';
 import RandomScreen from './screens/RandomScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import ExampleScreen from './screens/ExampleScreen';
-
+import PexelsApi from './api-pexels.js';
 
 //Starting screen of app FOR NOW
 function HomeScreen({ navigation }) {
@@ -33,6 +33,10 @@ function HomeScreen({ navigation }) {
 
             <TouchableOpacity style ={styles.lightButton} onPress = {() => {navigation.navigate('Example')}}>
                 <Text style={{margin: 10, fontSize: 40}}>Example</Text>
+                <Ionicons name='library-outline' size={50} style = {styles.darkIcon}></Ionicons>
+            </TouchableOpacity>
+            <TouchableOpacity style ={styles.lightButton} onPress = {() => {navigation.navigate('PexelsApi')}}>
+                <Text style={{margin: 10, fontSize: 40}}>API Test</Text>
                 <Ionicons name='library-outline' size={50} style = {styles.darkIcon}></Ionicons>
             </TouchableOpacity>
             </View>
@@ -84,6 +88,7 @@ function App() {
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Categories" component={CategoriesScreen} />
         <Stack.Screen name="Example" component={ExampleScreen} />
+        <Stack.Screen name="PexelsApi" component={PexelsApi} />
           <Stack.Group screenOptions={{headerShown: false, gestureEnabled: false}}>
             <Stack.Screen name="Fruit" component={FruitScreen} />
             <Stack.Screen name="Animal" component={AnimalScreen} />
