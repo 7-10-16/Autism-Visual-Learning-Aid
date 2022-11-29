@@ -18,39 +18,44 @@ import ProfileScreen from "./screens/ProfileScreen";
 import ExampleScreen from "./screens/ExampleScreen";
 import LogIn from "./screens/LoginScreen.js";
 import Reg from "./screens/RegScreen.js";
-import Speech from "expo-speech";
+import {TTSText, Say, TTSNav} from "./Components/TTS.js";
+import * as Speech from 'expo-speech';
+
 
 //Starting screen of app FOR NOW
 function HomeScreen({ navigation }) {
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text style={{ fontSize: 26, fontWeight: "medium" }}>Welcome back</Text>
-      <Text style={{ fontSize: 26, fontWeight: "medium", color: "#00cc00" }}>
-        USERNAME!
-      </Text>
+      <TTSText style={{ fontSize: 26, fontWeight: "medium" }} phrase="Welcome back" text="Welcome back"/>
+      <TTSText style={{ fontSize: 26, fontWeight: "medium", color: "#00cc00" }} phrase="USERNAME!" text="USERNAME!"/>
 
+      <Say phrase="What would you like to do?"/>
       <TouchableOpacity
         style={styles.lightButton}
         onPress={() => {
-          navigation.navigate("Categories");
+          navigation.navigate("Categories"); Speech.stop(); Speech.speak("take a quiz");
         }}
       >
-        <Text style={{ margin: 10, fontSize: 40 }}>Quiz</Text>
+        <TTSText style={{ margin: 10, fontSize: 40 }} phrase="Take a quiz?" text="Quiz!"/>
+
         <Ionicons
           name="library-outline"
           size={50}
           style={styles.darkIcon}
         ></Ionicons>
+
+        <Say phrase="or?"/>
+
       </TouchableOpacity>
 
       <View style={{ flexDirection: "row", marginTop: "10%" }}>
         <TouchableOpacity
           style={styles.darkButton}
           onPress={() => {
-            navigation.navigate("Profile");
+            navigation.navigate("Profile"); Speech.stop(); Speech.speak("Profile");
           }}
         >
-          <Text style={{ margin: 10, fontSize: 40 }}>Profile</Text>
+          <TTSText style={{ margin: 10, fontSize: 40 }} phrase="View your profile" text="Profile!"/>
           <Ionicons
             name="ios-person-circle-outline"
             size={50}
@@ -61,7 +66,7 @@ function HomeScreen({ navigation }) {
         <TouchableOpacity
           style={styles.lightButton}
           onPress={() => {
-            navigation.navigate("Example");
+            navigation.navigate("Example"); Speech.stop(); Speech.speak("Example");
           }}
         >
           <Text style={{ margin: 10, fontSize: 40 }}>Example</Text>
@@ -89,37 +94,44 @@ function CategoriesScreen({ navigation }) {
       <TouchableOpacity
         style={styles.fruitButton}
         onPress={() => {
-          navigation.navigate("Fruit");
+          navigation.navigate("Fruit"); Speech.stop(); Speech.speak("Fruit quiz");
         }}
       >
-        <Text style={styles.buttonText}>Fruit</Text>
+        <TTSText style={styles.buttonText} phrase="Fruit quiz" text="Fruit"/>
+
         <Ionicons name="nutrition" size={50} style={styles.catIcon}></Ionicons>
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.animalButton}
         onPress={() => {
-          navigation.navigate("Animal");
+          navigation.navigate("Animal"); Speech.stop(); Speech.speak("Animal quiz");
         }}
       >
-        <Text style={styles.buttonText}>Animal</Text>
+        <TTSText style={styles.buttonText} phrase="Animal quiz" text="Animal"/>
+
         <Ionicons name="paw" size={50} style={styles.catIcon}></Ionicons>
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.randomButton}
         onPress={() => {
-          navigation.navigate("Random");
+          navigation.navigate("Random"); Speech.stop(); Speech.speak("Random quiz");
         }}
       >
-        <Text style={styles.buttonText}>Random</Text>
+        <TTSText style={styles.buttonText} phrase="Random quiz" text="Random"/>
+
         <Ionicons name="help" size={50} style={styles.catIcon}></Ionicons>
       </TouchableOpacity>
+
+      <Say phrase="Or"/>
+
       <TouchableOpacity
         style={styles.cHomeButton}
         onPress={() => {
-          navigation.navigate("Home");
+          navigation.navigate("Home"); Speech.stop(); Speech.speak("Home");
         }}
       >
-        <Text style={styles.buttonText}>Home</Text>
+        <TTSText style={styles.buttonText} phrase="Go home" text="Home"/>
+
         <Ionicons name="home" size={50} style={styles.catIcon}></Ionicons>
       </TouchableOpacity>
     </View>
