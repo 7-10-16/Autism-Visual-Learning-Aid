@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
-import { Button, View, Text } from 'react-native';
+import { Button, View, Text, Image } from 'react-native';
+import * as Speech from 'expo-speech';
+
+
 
 var test = "test";
-var test2 = 18+24;
+var test2 = "test 2";
 var answer = 'this one';
 
 
@@ -73,27 +76,42 @@ export default function HomeScreen({ navigation }) {
 		}
 	};
     
-    return (
-        <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+	return (
+			<View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: 'red'}}>
         {}
-        {showScore ? (
-            <View>
-    <Text>You scored {score} out of {questions.length}</Text>
-	<Button title="Try Again?" onPress={() => navigation.navigate('Categories')} />
-	<Button title="Home" onPress={() => navigation.navigate('Home')} />
-    </View>
+					{showScore ? (
+					<View backgroundColor="blue">
+						<Text>You scored {score} out of {questions.length}</Text>
+						<Button title="Try Again?" onPress={() => navigation.navigate('Categories')} />
+						<Button title="Home" onPress={() => navigation.navigate('Home')} />
+					</View>
         ) : (
-            <>
-                <Text>
-                    <Text>What is this? {currentQuestion+1} / {questions.length}{"\n"}</Text>
-                    <Text>{questions[currentQuestion].questionText}</Text>
-                </Text>
-                <Text>
-                     {questions[currentQuestion].answerOptions.map((answerOption)=>
-                     <Text key={answerOption.answerText} onPress={()=>handleAnswerButtonClick(answerOption.isCorrect)}>{answerOption.answerText}{"\n"}</Text>)}
-                </Text>
-            </>
+					<View style={{ flex: 1, width: '90%'}} >
+						<View style={{ flex: 0.6, width: '100%', alignItems: 'center', justifyContent: 'center', backgroundColor: 'blue'}} >
+							<View>
+								<Text style={{ color: 'white', fontSize: 40, fontWeight: 'bold'}} >{currentQuestion+1} / {questions.length}{"\n"}</Text>
+								<Text style={{ color: 'white', fontSize: 40, fontWeight: 'bold'}} >What is this?</Text>
+								<View style={{alignItems: 'center', justifyContent: 'center'}}>
+									<Image style={{width: 250, height: 250}} source={require("../assets/splash.png")} />
+								</View>
+							</View>
+						</View>
+						<View style={{ flex: 0.4, width: '100%', alignItems: 'center', justifyContent: 'center', backgroundColor: 'purple'}} >
+							<Text>
+								<View style={{flexDirection: 'column'}}>
+									{questions[currentQuestion].answerOptions.map((answerOption)=>
+										<>
+											<View style={{flexDirection: 'row', justifyContent: 'space-evenly'}}>
+												<Text style={{ color: 'white', fontSize: 20, fontWeight: 'bold'}} onPress={()=>{Speech.stop(); Speech.speak(answerOption.answerText);}}>{answerOption.answerText}</Text>
+												<Text style={{ color: 'white', fontSize: 20, fontWeight: 'bold'}} onPress={()=>{Speech.stop(); Speech.speak(answerOption.answerText); handleAnswerButtonClick(answerOption.isCorrect);}}>Select{"\n"}</Text>
+											</View>
+										</>
+										)}
+								</View>
+							</Text>
+						</View>
+					</View>
         )}
-    </View>
-);
+    	</View>
+	);
 }

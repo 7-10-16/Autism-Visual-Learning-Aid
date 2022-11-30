@@ -96,6 +96,7 @@ export default function LogIn({ navigation }) {
               }}
             >
               Forgot Password?
+              
             </Text>
           </TouchableOpacity>
 
@@ -117,6 +118,12 @@ export default function LogIn({ navigation }) {
         </View>
       </View>
       <StatusBar style="auto" />
+      <TouchableOpacity
+        style={styles.cHomeButton}
+        onPress={() => {
+          navigation.navigate("Home");
+        }}
+      ></TouchableOpacity>
     </View>
   );
 }

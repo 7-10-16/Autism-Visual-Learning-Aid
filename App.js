@@ -18,7 +18,7 @@ import ProfileScreen from "./screens/ProfileScreen";
 import ExampleScreen from "./screens/ExampleScreen";
 import LogIn from "./screens/LoginScreen.js";
 import Reg from "./screens/RegScreen.js";
-import {TTSText, Say, TTSNav} from "./Components/TTS.js";
+import {TTSText, Say} from "./Components/TTS.js";
 import * as Speech from 'expo-speech';
 
 
