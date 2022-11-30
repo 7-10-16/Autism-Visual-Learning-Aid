@@ -118,12 +118,14 @@ export default function LogIn({ navigation }) {
         </View>
       </View>
       <StatusBar style="auto" />
+
+      {/* Just a temporary button for testing to direct straight to the home without having to login */}
       <TouchableOpacity
         style={styles.cHomeButton}
         onPress={() => {
           navigation.navigate("Home");
         }}
-      ></TouchableOpacity>
+      ><Text>Skip to Home</Text></TouchableOpacity>
     </View>
   );
 }
