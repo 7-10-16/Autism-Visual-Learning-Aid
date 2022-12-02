@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Button, View, Text, StyleSheet } from 'react-native';
-import { Colors } from 'react-native/Libraries/NewAppScreen';
 
 var test = "test";
 var test2 = 18+24;
