@@ -22,7 +22,7 @@ import {TTSText, Say} from "./Components/TTS.js";
 import * as Speech from 'expo-speech';
 
 
-//Starting screen of app FOR NOW
+//Starting screen of app
 function HomeScreen({ navigation }) {
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
@@ -30,6 +30,8 @@ function HomeScreen({ navigation }) {
       <TTSText style={{ fontSize: 26, fontWeight: "medium", color: "#00cc00" }} phrase="USERNAME!" text="USERNAME!"/>
 
       <Say phrase="What would you like to do?"/>
+
+      {/* Quiz Navigation Button */}
       <TouchableOpacity
         style={styles.lightButton}
         onPress={() => {
@@ -42,13 +44,14 @@ function HomeScreen({ navigation }) {
           name="library-outline"
           size={50}
           style={styles.darkIcon}
-        ></Ionicons>
+        />
 
       </TouchableOpacity>
 
       <Say phrase="or?"/>
 
       <View style={{ flexDirection: "row", marginTop: "10%" }}>
+        {/* Profile Navigation Button */}
         <TouchableOpacity
           style={styles.darkButton}
           onPress={() => {
@@ -60,9 +63,10 @@ function HomeScreen({ navigation }) {
             name="ios-person-circle-outline"
             size={50}
             style={styles.lightIcon}
-          ></Ionicons>
+          />
         </TouchableOpacity>
 
+        {/* Example Screen Navigation Button */}
         <TouchableOpacity
           style={styles.lightButton}
           onPress={() => {
@@ -74,7 +78,7 @@ function HomeScreen({ navigation }) {
             name="library-outline"
             size={50}
             style={styles.darkIcon}
-          ></Ionicons>
+          />
         </TouchableOpacity>
       </View>
     </View>
@@ -99,7 +103,7 @@ function CategoriesScreen({ navigation }) {
       >
         <TTSText style={styles.buttonText} phrase="Fruit quiz" text="Fruit" />
 
-        <Ionicons name="nutrition" size={50} style={styles.catIcon}></Ionicons>
+        <Ionicons name="nutrition" size={50} style={styles.catIcon}/>
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.animalButton}
@@ -109,7 +113,7 @@ function CategoriesScreen({ navigation }) {
       >
         <TTSText style={styles.buttonText} phrase="Animal quiz" text="Animal"/>
 
-        <Ionicons name="paw" size={50} style={styles.catIcon}></Ionicons>
+        <Ionicons name="paw" size={50} style={styles.catIcon}/>
       </TouchableOpacity>
       <TouchableOpacity
         style={styles.randomButton}
