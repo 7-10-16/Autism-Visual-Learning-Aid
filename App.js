@@ -44,9 +44,9 @@ function HomeScreen({ navigation }) {
           style={styles.darkIcon}
         ></Ionicons>
 
-        <Say phrase="or?"/>
-
       </TouchableOpacity>
+
+      <Say phrase="or?"/>
 
       <View style={{ flexDirection: "row", marginTop: "10%" }}>
         <TouchableOpacity
@@ -55,7 +55,7 @@ function HomeScreen({ navigation }) {
             navigation.navigate("Profile"); Speech.stop(); Speech.speak("Profile");
           }}
         >
-          <TTSText style={{ margin: 10, fontSize: 40 }} phrase="View your profile" text="Profile!"/>
+          <TTSText style={{ margin: 10, fontSize: 40 }} phrase="View your profile" text="Profile"/>
           <Ionicons
             name="ios-person-circle-outline"
             size={50}
@@ -97,7 +97,7 @@ function CategoriesScreen({ navigation }) {
           navigation.navigate("Fruit"); Speech.stop(); Speech.speak("Fruit quiz");
         }}
       >
-        <TTSText style={styles.buttonText} phrase="Fruit quiz" text="Fruit"/>
+        <TTSText style={styles.buttonText} phrase="Fruit quiz" text="Fruit" />
 
         <Ionicons name="nutrition" size={50} style={styles.catIcon}></Ionicons>
       </TouchableOpacity>

@@ -19,7 +19,7 @@ export class TTSText extends React.Component {
   render() {
     return (
       <TouchableOpacity style={{alignItems:'center'}}>
-        {this.props.autoRead? Speech.speak(this.props.phrase) : null}
+        {this.props.autoRead === undefined ? Speech.speak(this.props.phrase) : null}
         <Text style={this.props.style} onPress={()=>{Speech.stop(); Speech.speak(this.props.phrase, {voice: "com.apple.ttsbundle.siri_Catherine_en-AU_compact"});} } >{this.props.text}</Text>
       </TouchableOpacity>
     )
