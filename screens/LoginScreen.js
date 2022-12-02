@@ -9,6 +9,7 @@ import {
   Alert
 } from "react-native";
 import { styles } from "../config/componentColourPalette.js";
+import {TTSText, Say} from "../Components/TTS.js";
 
 export default function LogIn({ navigation }) {
   const admin = {
@@ -69,6 +70,7 @@ export default function LogIn({ navigation }) {
 
   return (
     <View style={styles.container}>
+      <Say phrase="Login page"/>
       <Image style={styles.Img} source={require("../assets/splash.png")} />
       <View style={{ width: "100%" }}>
         <TextInput
@@ -94,6 +96,7 @@ export default function LogIn({ navigation }) {
               }}
             >
               Forgot Password?
+              
             </Text>
           </TouchableOpacity>
 
@@ -115,6 +118,14 @@ export default function LogIn({ navigation }) {
         </View>
       </View>
       <StatusBar style="auto" />
+
+      {/* Just a temporary button for testing to direct straight to the home without having to login */}
+      <TouchableOpacity
+        style={styles.cHomeButton}
+        onPress={() => {
+          navigation.navigate("Home");
+        }}
+      ><Text>Skip to Home</Text></TouchableOpacity>
     </View>
   );
 }
