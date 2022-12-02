@@ -8,8 +8,8 @@ import {
   StatusBar,
   Alert
 } from "react-native";
+import axios from 'axios';
 import { styles } from "../config/componentColourPalette.js";
-import {TTSText, Say} from "../Components/TTS.js";
 
 export default function LogIn({ navigation }) {
   const admin = {
@@ -30,8 +30,8 @@ export default function LogIn({ navigation }) {
     }
   }
 
-  const [username, setUserName] = useState();
-  const [password, setPassword] = useState();
+  const [user_email, setUserName] = useState("");
+  const [user_password, setPassword] = useState("");
   
   function validateEmail() {
     if (username == null) {
@@ -68,22 +68,34 @@ export default function LogIn({ navigation }) {
       }
   }
 
+  const login = () => {
+    axios.get(`https://node-server-udw2.onrender.com/login`, { // If testing locally should use your local ip address e.g. http://192.168.0.15:19007/routename
+      params: { //Parameters which use the variables from the TextInputs
+        user_email: {user_email}, // in {} the variable name has to match our database name as it used as a query e.g. user_email = 'Test@test.com'
+        user_password: {user_password}
+      }
+    }).then((response) => {
+      console.log(response.data); //Displays data from the array, if there isn't any. Can use a check if empty to notify user
+      });
+    };
+
   return (
     <View style={styles.container}>
-      <Say phrase="Login page"/>
       <Image style={styles.Img} source={require("../assets/splash.png")} />
       <View style={{ width: "100%" }}>
         <TextInput
-          onChangeText={(inputUsername) => setUserName(inputUsername)}
+          onChangeText={setUserName}
           style={styles.TextComponentStyle}
           placeholder={"Email"}
+          value={user_email}
         ></TextInput>
         <TextInput
-          onChangeText={(inputPassword) => setPassword(inputPassword)}
+          onChangeText={setPassword}
           placeholder={"Password"}
           style={styles.TextComponentStyle}
           secureTextEntry={true}
           textContentType="password"
+          value={user_password}
         ></TextInput>
 
         <View Style={{ marginTop: "10%", width: "80%" }}>
@@ -96,12 +108,11 @@ export default function LogIn({ navigation }) {
               }}
             >
               Forgot Password?
-              
             </Text>
           </TouchableOpacity>
 
           <TouchableOpacity
-            onPress={() => logInButtonCallBack()}
+            onPress={login}
             style={styles.ButtonComponentStyle}
           >
             <Text style={{ color: "white" }}>Log In</Text>
@@ -118,14 +129,6 @@ export default function LogIn({ navigation }) {
         </View>
       </View>
       <StatusBar style="auto" />
-
-      {/* Just a temporary button for testing to direct straight to the home without having to login */}
-      <TouchableOpacity
-        style={styles.cHomeButton}
-        onPress={() => {
-          navigation.navigate("Home");
-        }}
-      ><Text>Skip to Home</Text></TouchableOpacity>
     </View>
   );
 }

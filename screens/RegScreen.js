@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from 'axios';
 import {
     View,
     Text,
@@ -17,10 +18,12 @@ export default function Reg({ navigation }) {
       "^[a-zA-Z0-9._:$!%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]$"
     );
   
-    const [username, setUserName] = useState();
-    const [password, setPassword] = useState();
-    const [password1, setPassword1] = useState();
-    const [age, setAge] = useState();
+    const [fname, setFName] = useState("");
+    const [lname, setLName] = useState("");
+    const [username, setUserName] = useState("");
+    const [password, setPassword] = useState("");
+    const [password1, setPassword1] = useState("");
+    const [age, setAge] = useState(0);
   
     function checkPasswords() {
       if (password == password1) {
@@ -84,42 +87,80 @@ export default function Reg({ navigation }) {
         navigation.navigate("Home");
       }
     }
+
+    const addUser = () => {
+      axios.post('https://node-server-udw2.onrender.com/createuser', // If testing locally should use your local ip address e.g. http://192.168.0.15:19007/routename
+      {
+        // Declared data to be sent to server
+          fname: fname, 
+          lname: lname,
+          age: age,
+          email: username,
+          password: password
+      }).then(() => {
+              console.log("success");
+      });
+  }
+  
+  //Function allowing multiple functions to be called on press
+  const onPress = () => {
+    addUser();
+
+  }
   
     return (
       <KeyboardAvoidingView style={styles.container} behavior='padding'>
         <View style={{ width: "100%" }}>
           <Image style={styles.Img} source={require("../assets/splash.png")} />
           <TextInput
-            onChangeText={(inputUsername) => setUserName(inputUsername)}
+            onChangeText={setFName}
+            textContentType="FirstName"
+            style={styles.TextComponentStyle}
+            placeholder={"FirstName"}
+            value={fname}
+          ></TextInput>
+          <TextInput
+            onChangeText={setLName}
+            textContentType="LastName"
+            style={styles.TextComponentStyle}
+            placeholder={"LastName"}
+            value={lname}
+          ></TextInput>
+          <TextInput
+            onChangeText={setUserName}
             textContentType="Email"
             style={styles.TextComponentStyle}
             placeholder={"Email"}
+            value={username}
           ></TextInput>
           <TextInput
             keyboardType="number-pad"
-            onChangeText={(inputAge) => setAge(inputAge)}
+            onChangeText={setAge}
             textContentType="none"
             style={styles.TextComponentStyle}
             placeholder={"Age"}
+            value={age}
           ></TextInput>
           <TextInput
-            onChangeText={(inputPassword) => setPassword(inputPassword)}
+            onChangeText={setPassword}
             placeholder={"Password"}
             style={styles.TextComponentStyle}
             secureTextEntry={true}
             textContentType="password"
+            value={password}
           ></TextInput>
           <TextInput
-            onChangeText={(inputPassword) => setPassword1(inputPassword)}
+            onChangeText={setPassword1}
             placeholder={"Repeat Password"}
             style={styles.TextComponentStyle}
             secureTextEntry={true}
             textContentType="password"
+            value={password1}
           ></TextInput>
   
           <View Style={{ marginTop: "10%", width: "80%" }}>
             <TouchableOpacity
-              onPress={() => onSubmitCallBack()}
+              onPress={onPress}
               style={styles.ButtonComponentStyle}
             >
               <Text style={{ color: "white" }}>Register</Text>
