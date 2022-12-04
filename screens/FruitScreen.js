@@ -1,99 +1,122 @@
 import React, { useState } from 'react';
-import { Button, View, Text, Image } from 'react-native';
+import { Button, View, Text, Image, Modal } from 'react-native';
 import * as Speech from 'expo-speech';
 import {TTSText, Say} from "../Components/TTS.js";
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 
+//debugging array
+const fruits = ["Apple", "Banana", "Coconut", "Grapes", "Pineapple",
+"Lemon", "Avacado", "Blueberries", "Oranges", "Mango",
+"Strawberries", "Cherries", "Olives", "Watermelon", "Kiwi",
+"Peach", "Guava", "Grapefruit", "Lime", "Pumpkin"];
 
-
-var test = "test";
-var test2 = "test 2";
-var answer = 'this one';
-
-
-
+//Exports the fruit function that follows
 export default function HomeScreen({ navigation }) {
+	//The questions are defined in an array with their answers.
+	//Each answer is an element of the fruits array which has been imported in a random order.
+	//This means that the values are always random.
 	const questions = [
 		{
-			questionText: answer,
+			//QuestionText is the value that the question is about.
+			questionText: fruits[0],
+			//Answer option are the values the user picks from. They are set as either true or false if correct.
+			answerOptions: [
+				{ answerText: fruits[0], isCorrect: true },
+				{ answerText: fruits[1], isCorrect: false },
+				{ answerText: fruits[2], isCorrect: false },
+				{ answerText: fruits[3], isCorrect: false },
+			],
+		},
+		{
+			questionText: fruits[4],
+			answerOptions: [
+				{ answerText: fruits[4], isCorrect: true },
+				{ answerText: fruits[5], isCorrect: false },
+				{ answerText: fruits[6], isCorrect: false },
+				{ answerText: fruits[7], isCorrect: false },
+			],
+		},
+		{
+			questionText: fruits[8],
+			answerOptions: [
+				{ answerText: fruits[8], isCorrect: true },
+				{ answerText: fruits[9], isCorrect: false },
+				{ answerText: fruits[10], isCorrect: false },
+				{ answerText: fruits[11], isCorrect: false },
+			],
+		},
+		{
+			questionText: fruits[12],
+			answerOptions: [
+				{ answerText: fruits[12], isCorrect: true },
+				{ answerText: fruits[13], isCorrect: false },
+				{ answerText: fruits[14], isCorrect: false },
+				{ answerText: fruits[15], isCorrect: false },
+			],
 			
-			answerOptions: [
-				{ answerText: test, isCorrect: false },
-				{ answerText: test2, isCorrect: false },
-				{ answerText: answer, isCorrect: true },
-				{ answerText: 'Pizza', isCorrect: false },
-			],
 		},
 		{
-			questionText: '🍑',
+			questionText: fruits[16],
 			answerOptions: [
-				{ answerText: 'Apple', isCorrect: false },
-				{ answerText: 'Peach', isCorrect: true },
-				{ answerText: 'Dog', isCorrect: false },
-				{ answerText: 'Carrot', isCorrect: false },
-			],
-		},
-		{
-			questionText: '🍌',
-			answerOptions: [
-				{ answerText: 'Banana', isCorrect: true },
-				{ answerText: 'Noodles', isCorrect: false },
-				{ answerText: 'Grapes', isCorrect: false },
-				{ answerText: 'Blood', isCorrect: false },
-			],
-		},
-		{
-			questionText: '🍓',
-			answerOptions: [
-				{ answerText: 'Cherry', isCorrect: false },
-				{ answerText: 'Apple', isCorrect: false },
-				{ answerText: 'Bug', isCorrect: false },
-				{ answerText: 'Strawberry', isCorrect: true },
-			],
+				{ answerText: fruits[16], isCorrect: true },
+				{ answerText: fruits[17], isCorrect: false },
+				{ answerText: fruits[18], isCorrect: false },
+				{ answerText: fruits[19], isCorrect: false },
+			],		
 		},
 	];
+
 	const [currentQuestion, setCurentQuestion] = useState(0);
-
 	const [showScore, setShowScore] = useState(false);
-
 	const [score, setScore] = useState(0);
 
+	//When an answer is clicked, it is evaluated and then score is either incremeted or not.
 	const handleAnswerButtonClick = (isCorrect) => {
 		if(isCorrect === true){
-			alert("RIGHT ANSWER!");
 			setScore(score +1);
 		}
-		else{
-			alert("WRONG!")
+		else{	
+
 		}
 
-
+		//The question is set to the next in the array until the array length is reached.
+		//Then, the score dialogue is shown instead.
 		const nextQuestion = currentQuestion + 1;
 		if(nextQuestion <questions.length){
 					setCurentQuestion(nextQuestion);
-
 		}
 		else{
 			setShowScore(true);
 		}
 	};
     
+	//This is the part shown to the user.
 	return (
 			<View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor:'#ff6361'}}>
         {}
+					{/* The user is shown their score and given options to try again or go home */}
+					{/* This shows only while showScore equates to true */}
 					{showScore ? (
-					<View backgroundColor="blue">
-						<Text>You scored {score} out of {questions.length}</Text>
-						<Button title="Try Again?" onPress={() => navigation.navigate('Categories')} />
-						<Button title="Home" onPress={() => navigation.navigate('Home')} />
+						<View style={{backgroundColor: 'white', width:'80%',height:'30%', borderRadius: 10, alignItems:'center'}}>
+					<Text style={{fontWeight:'bold', textAlign:'center', fontSize: '40', color: 'gold'}}>Congratulations!</Text>
+					<Text style={{fontWeight:'bold', textAlign:'center', fontSize: '30', color:'black', marginBottom:10}}>You scored {score} out of {questions.length}</Text>
+					
+					<TouchableOpacity style={{backgroundColor: 'lightblue', width: '50%', borderRadius: 10, marginBottom:15}} onPress={() => navigation.navigate('Categories')}>
+					<Button color={'white'} title="Try Again?" />
+					</TouchableOpacity>
+				
+					<TouchableOpacity style={{backgroundColor: 'lightgreen', width: '50%', borderRadius: 10}} onPress={() => navigation.navigate('Home')}>
+					<Button color={'white'} title="Home" />
+					</TouchableOpacity>
 					</View>
         ) : (
+			//The quiz section is shown while showScore equates to anything other than true
 					<View style={{ flex: 1, width: '90%'}} >
-						<View style={{ flex: 0.6, width: '100%', alignItems: 'center', justifyContent: 'center', borderBottomColor:'lightgrey', borderBottomWidth:1.5}} >
+						<View style={{ flex: 0.6, width: '100%', alignItems: 'center', justifyContent: 'center', borderBottomColor:'white', borderBottomWidth:1.5, marginBottom: 10}} >
 							<View>
-								<Text style={{ color: 'black', fontSize: 40, fontWeight: 'bold', backgroundColor:'#46C8C3', alignSelf:'center', borderRadius:10, overflow:'hidden', paddingRight:10, paddingLeft:10, width:'50%', height:'15%'}} >{currentQuestion+1} / {questions.length}{"\n"}</Text>
-								<Text style={{ color: 'black', fontSize: 40, fontWeight: 'bold'}} >What is this?</Text>
+								<Text style={{ color: 'black', fontSize: 40, fontWeight: 'bold', backgroundColor:'lightblue', alignSelf:'center', borderRadius:10, overflow:'hidden', paddingRight:10, paddingLeft:10, width:'50%', height:'15%'}} >{currentQuestion+1} / {questions.length}{"\n"}</Text>
+								<Text style={{ color: 'black', fontSize: 40, fontWeight: 'bold', textAlign: 'center'}} >What is this?</Text>
 								<View style={{alignItems: 'center', justifyContent: 'center'}}>
 									<Image style={{width: 250, height: 250}} source={require("../assets/splash.png")} />
 								</View>
@@ -104,9 +127,9 @@ export default function HomeScreen({ navigation }) {
 								<View style={{flexDirection: 'column'}}>
 									{questions[currentQuestion].answerOptions.map((answerOption)=>
 										<>
-											<View style={{flexDirection: 'row', justifyContent: 'space-between', margin:26}}>
+											<View style={{flexDirection: 'row', justifyContent: 'space-between', marginBottom:40}}>
 												<TTSText style={{ color: 'black', fontSize: 20, fontWeight: 'bold'}} text={answerOption.answerText} phrase={answerOption.answerText}/>
-												<TouchableOpacity style={{backgroundColor:'#4BC846', width:100, alignItems:'center', alignContent:'center', flex:1, borderRadius:10}} onPress={()=>{Speech.stop(); Speech.speak(answerOption.answerText); handleAnswerButtonClick(answerOption.isCorrect);}}>
+												<TouchableOpacity style={{backgroundColor:'white', width:100, alignItems:'center', alignContent:'center', flex:1, borderRadius:10, marginLeft: 10}} onPress={()=>{Speech.stop(); Speech.speak(answerOption.answerText); handleAnswerButtonClick(answerOption.isCorrect);}}>
 													<Text style={{ color: 'black', fontSize: 20, fontWeight: 'bold', textAlign:'center'}}>Select{"\n"}</Text>
 												</TouchableOpacity>
 											</View>
