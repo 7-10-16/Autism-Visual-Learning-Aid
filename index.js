@@ -39,3 +39,39 @@ connection.connect(function(err) {
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)
   })
+
+// getting all fruit
+app.get('/fruits', (req, res) => {
+  connection.query("SELECT `item_img` AS img, `item_name` AS Name  FROM `item` WHERE category_id = 1;",(err, result) => {
+    if (err) {
+      console.log(err)
+    } else {
+      res.send(result)
+    }
+  });
+})
+
+//getting all animals
+app.get('/animals', (req, res) => {
+  connection.query("SELECT `item_img` AS img, `item_name` AS Name  FROM `item` WHERE category_id = 2;",(err, result) => {
+    if (err) {
+      console.log(err)
+    } else {
+      res.send(result)
+    }
+  });
+})
+
+//getting all random
+app.get('/random', (req, res) => {
+  connection.query("SELECT `item_img` AS img, `item_name` AS Name  FROM `item` WHERE category_id = 3;",(err, result) => {
+    if (err) {
+      console.log(err)
+    } else {
+      res.send(result)
+    }
+  });
+})
+
+
+
