@@ -17,7 +17,7 @@ connection.connect(function(err) {
 
     const email = req.query.user_email; 
     const password = req.query.user_password;
-    connection.query("SELECT user_email, user_password FROM user WHERE ? AND ?",
+    connection.query("SELECT user_email, user_password, user_fname FROM user WHERE ? AND ?",
     [email, password], (err, result) => {
       if (err) {
         console.log(err);
