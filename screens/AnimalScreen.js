@@ -5,60 +5,72 @@ import {TTSText, Say} from "../Components/TTS.js";
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 //debugging array
-const Animals = ["Apple", "Banana", "Coconut", "Grapes", "Pineapple",
-"Lemon", "Avacado", "Blueberries", "Oranges", "Mango",
-"Strawberries", "Cherries", "Olives", "Watermelon", "Kiwi",
-"Peach", "Guava", "Grapefruit", "Lime", "Pumpkin"];
+// const Animals = ["Apple", "Banana", "Coconut", "Grapes", "Pineapple",
+// "Lemon", "Avacado", "Blueberries", "Oranges", "Mango",
+// "Strawberries", "Cherries", "Olives", "Watermelon", "Kiwi",
+// "Peach", "Guava", "Grapefruit", "Lime", "Pumpkin"];
 
 
 
 export default function HomeScreen({ navigation }) {
+
+	//Database connection to populate the question array
+const [animals, setAnimals] = React.useState([]);
+const getAnimals = () => {
+	axios.get('https://node-server-udw2.onrender.com/animals').then((response) => {
+		console.log(response.data);
+		setAnimals(response.data);
+	});
+}
+//NOT SURE WHAT IT'S SUPPOSED TO PASS TO OR IF THIS IS EVEN SPOSED TO BE HERE
+{animals.map(animal => {})}
+
 	const questions = [
 		{
-			questionText: Animals[0],
+			questionText: animals[0],
 			
 			answerOptions: [
-				{ answerText: Animals[0], isCorrect: true },
-				{ answerText: Animals[1], isCorrect: false },
-				{ answerText: Animals[2], isCorrect: false },
-				{ answerText: Animals[3], isCorrect: false },
+				{ answerText: animals[0], isCorrect: true },
+				{ answerText: animals[1], isCorrect: false },
+				{ answerText: animals[2], isCorrect: false },
+				{ answerText: animals[3], isCorrect: false },
 			],
 		},
 		{
-			questionText: Animals[4],
+			questionText: animals[4],
 			answerOptions: [
-				{ answerText: Animals[4], isCorrect: true },
-				{ answerText: Animals[5], isCorrect: false },
-				{ answerText: Animals[6], isCorrect: false },
-				{ answerText: Animals[7], isCorrect: false },
+				{ answerText: animals[4], isCorrect: true },
+				{ answerText: animals[5], isCorrect: false },
+				{ answerText: animals[6], isCorrect: false },
+				{ answerText: animals[7], isCorrect: false },
 			],
 		},
 		{
-			questionText: Animals[8],
+			questionText: animals[8],
 			answerOptions: [
-				{ answerText: Animals[8], isCorrect: true },
-				{ answerText: Animals[9], isCorrect: false },
-				{ answerText: Animals[10], isCorrect: false },
-				{ answerText: Animals[11], isCorrect: false },
+				{ answerText: animals[8], isCorrect: true },
+				{ answerText: animals[9], isCorrect: false },
+				{ answerText: animals[10], isCorrect: false },
+				{ answerText: animals[11], isCorrect: false },
 			],
 		},
 		{
-			questionText: Animals[12],
+			questionText: animals[12],
 			answerOptions: [
-				{ answerText: Animals[12], isCorrect: true },
-				{ answerText: Animals[13], isCorrect: false },
-				{ answerText: Animals[14], isCorrect: false },
-				{ answerText: Animals[15], isCorrect: false },
+				{ answerText: animals[12], isCorrect: true },
+				{ answerText: animals[13], isCorrect: false },
+				{ answerText: animals[14], isCorrect: false },
+				{ answerText: animals[15], isCorrect: false },
 			],
 			
 		},
 		{
-			questionText: Animals[16],
+			questionText: animals[16],
 			answerOptions: [
-				{ answerText: Animals[16], isCorrect: false },
-				{ answerText: Animals[17], isCorrect: false },
-				{ answerText: Animals[18], isCorrect: true },
-				{ answerText: Animals[19], isCorrect: false },
+				{ answerText: animals[18], isCorrect: false },
+				{ answerText: animals[17], isCorrect: false },
+				{ answerText: animals[16], isCorrect: true },
+				{ answerText: animals[19], isCorrect: false },
 			],		
 		},
 	];
