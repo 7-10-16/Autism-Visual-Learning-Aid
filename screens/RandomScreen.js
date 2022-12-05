@@ -4,61 +4,75 @@ import * as Speech from 'expo-speech';
 import {TTSText, Say} from "../Components/TTS.js";
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
+
+
 //debugging array
-const Random = ["Apple", "Banana", "Coconut", "Grapes", "Pineapple",
-"Lemon", "Avacado", "Blueberries", "Oranges", "Mango",
-"Strawberries", "Cherries", "Olives", "Watermelon", "Kiwi",
-"Peach", "Guava", "Grapefruit", "Lime", "Pumpkin"];
+// const Random = ["Apple", "Banana", "Coconut", "Grapes", "Pineapple",
+// "Lemon", "Avacado", "Blueberries", "Oranges", "Mango",
+// "Strawberries", "Cherries", "Olives", "Watermelon", "Kiwi",
+// "Peach", "Guava", "Grapefruit", "Lime", "Pumpkin"];
 
 
 
 export default function HomeScreen({ navigation }) {
+	//Database connection to populate the question array
+const [random, setRandom] = React.useState([]);
+const getRandom = () => {
+	axios.get('https://node-server-udw2.onrender.com/random').then((response) => {
+		console.log(response.data);
+		setRandom(response.data);
+	});
+}
+//NOT SURE WHAT IT'S SUPPOSED TO PASS TO OR IF THIS IS EVEN SPOSED TO BE HERE
+{random.map(randoms => {})}
+
+
 	const questions = [
 		{
-			questionText: Random[0],
+			questionText: random[0],
 			
 			answerOptions: [
-				{ answerText: Random[0], isCorrect: true },
-				{ answerText: Random[1], isCorrect: false },
-				{ answerText: Random[2], isCorrect: false },
-				{ answerText: Random[3], isCorrect: false },
+				{ answerText: random[0], isCorrect: true },
+				{ answerText: random[1], isCorrect: false },
+				{ answerText: random[2], isCorrect: false },
+				{ answerText: random[3], isCorrect: false },
 			],
 		},
 		{
-			questionText: Random[4],
+			questionText: random[4],
 			answerOptions: [
-				{ answerText: Random[4], isCorrect: true },
-				{ answerText: Random[5], isCorrect: false },
-				{ answerText: Random[6], isCorrect: false },
-				{ answerText: Random[7], isCorrect: false },
+				{ answerText: random[4], isCorrect: true },
+				{ answerText: random[5], isCorrect: false },
+				{ answerText: random[6], isCorrect: false },
+				{ answerText: random[7], isCorrect: false },
 			],
 		},
 		{
-			questionText: Random[8],
+			questionText: random[8],
 			answerOptions: [
-				{ answerText: Random[8], isCorrect: true },
-				{ answerText: Random[9], isCorrect: false },
-				{ answerText: Random[10], isCorrect: false },
-				{ answerText: Random[11], isCorrect: false },
+				{ answerText: random[8], isCorrect: true },
+				{ answerText: random[9], isCorrect: false },
+				{ answerText: random[10], isCorrect: false },
+				{ answerText: random[11], isCorrect: false },
 			],
 		},
 		{
-			questionText: Random[12],
+			questionText: random[12],
 			answerOptions: [
-				{ answerText: Random[12], isCorrect: true },
-				{ answerText: Random[13], isCorrect: false },
-				{ answerText: Random[14], isCorrect: false },
-				{ answerText: Random[15], isCorrect: false },
+				{ answerText: random[12], isCorrect: true },
+				{ answerText: random[13], isCorrect: false },
+				{ answerText: random[14], isCorrect: false },
+				{ answerText: random[15], isCorrect: false },
 			],
 			
 		},
 		{
-			questionText: Random[16],
+			questionText: random[16],
 			answerOptions: [
-				{ answerText: Random[16], isCorrect: false },
-				{ answerText: Random[17], isCorrect: false },
-				{ answerText: Random[18], isCorrect: true },
-				{ answerText: Random[19], isCorrect: false },
+				{ answerText: random[19], isCorrect: false },
+				{ answerText: random[17], isCorrect: false },
+				{ answerText: random[18], isCorrect: false },
+				{ answerText: random[16], isCorrect: true },
 			],		
 		},
 	];
