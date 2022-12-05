@@ -1,15 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import { StyleSheet, Text, View, SafeAreaView, Image, ScrollView } from "react-native";
+import HistoryComp, {historyComp} from '../Components/historyComp'
 
 export default function App() {
+    const [hasHistory, setHasHistory] = useState(false)
     return (
         <SafeAreaView style={styles.container}>
             <ScrollView showsVerticalScrollIndicator={false}>
                 {/* Hardcoded values need to be replaced with vars */}
                 <View style={styles.infoContainer}>
                     <Text style={[styles.text, { fontWeight: "200", fontSize: 36 }]}>Username</Text>
-                    <Text style={[styles.text, { color: 'grey', fontSize: 14 }]}>Rank</Text>
-                    {/* Rank could be a random cool word from an array */}
                 </View>
 
                 <View style={styles.statsContainer}>
@@ -27,7 +27,9 @@ export default function App() {
 
                     </View>
                 </View>   
+                <HistoryComp></HistoryComp>
             </ScrollView>
+           
         </SafeAreaView>
     );
 }
@@ -35,7 +37,7 @@ export default function App() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: 'White',
+        backgroundColor: 'lightblue',
     },
     text: {
         fontFamily: "HelveticaNeue",
