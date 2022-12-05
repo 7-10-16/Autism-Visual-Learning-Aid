@@ -128,21 +128,6 @@ function CategoriesScreen({ navigation }) {
 
 
 
-function HistoryScreen({ navigation }) {
-  return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text>History Screen</Text>
-      <Button
-        title="Go to History... again"
-        onPress={() => navigation.push("History")}
-      />
-      <Button title="Go Home" onPress={() => navigation.popToTop()} />
-    </View>
-  );
-}
-
-
-
 const Stack = createNativeStackNavigator();
 
 function App() {
@@ -166,7 +151,6 @@ function App() {
           <Stack.Screen name="Random" component={RandomScreen} />
         </Stack.Group>
         <Stack.Screen name="Profile" component={ProfileScreen} />
-        <Stack.Screen name="History" component={HistoryScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
