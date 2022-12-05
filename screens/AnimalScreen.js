@@ -99,14 +99,27 @@ const getAnimals = () => {
 			setShowScore(true);
 		}
 	};
+
+		const FinalScoreMessage = (props) => {
+			if(props.score == 5){
+				return(
+						<TTSText style={{fontWeight:'bold', textAlign:'center', fontSize: '40', color: 'gold'}} text="Congratulations!" phrase="Congratulations!"/>
+				)
+			}
+			else{
+				return(
+						<TTSText style={{fontWeight:'bold', textAlign:'center', fontSize: '40', color: 'gold'}} text="Oops try again" phrase="Oops...try again"/>
+				)
+			}
+		};
     
     return (
 			<View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor:'#58508d'}}>
         {}
 					{showScore ? (
 						<View style={{backgroundColor: 'white', width:'80%',height:'30%', borderRadius: 10, alignItems:'center'}}>
-					<Text style={{fontWeight:'bold', textAlign:'center', fontSize: '40', color: 'gold'}}>Congratulations!</Text>
-					<Text style={{fontWeight:'bold', textAlign:'center', fontSize: '30', color:'black', marginBottom:10}}>You scored {score} out of {questions.length}</Text>
+					<FinalScoreMessage score={score}/>
+					<TTSText style={{fontWeight:'bold', textAlign:'center', fontSize: '30', color:'black', marginBottom:10}} text={"You scored " + score + " out of " + questions.length} phrase={"You scored " + score + "out of " + questions.length}/>
 					
 					<TouchableOpacity style={{backgroundColor: 'lightblue', width: '50%', borderRadius: 10, marginBottom:15}} onPress={() => navigation.navigate('Categories')}>
 					<Button color={'white'} title="Try Again?"/>
@@ -121,7 +134,7 @@ const getAnimals = () => {
 						<View style={{ flex: 0.6, width: '100%', alignItems: 'center', justifyContent: 'center', borderBottomColor:'white', borderBottomWidth:1.5,marginBottom: 10}} >
 							<View>
 								<Text style={{ color: 'black', fontSize: 40, fontWeight: 'bold', backgroundColor:'#46C8C3', alignSelf:'center', borderRadius:10, overflow:'hidden', paddingRight:10, paddingLeft:10, width:'50%', height:'15%'}} >{currentQuestion+1} / {questions.length}{"\n"}</Text>
-								<Text style={{ color: 'white', fontSize: 40, fontWeight: 'bold', textAlign: 'center'}} >What is this?</Text>
+								<TTSText style={{ color: 'black', fontSize: 40, fontWeight: 'bold', textAlign: 'center'}} text="What is this?" phrase="What is this?"/>
 								<View style={{alignItems: 'center', justifyContent: 'center'}}>
 									<Image style={{width: 250, height: 250}} source={require("../assets/splash.png")} />
 								</View>
