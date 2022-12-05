@@ -6,13 +6,24 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 
 
 //debugging array
-const fruits = ["Apple", "Banana", "Coconut", "Grapes", "Pineapple",
-"Lemon", "Avacado", "Blueberries", "Oranges", "Mango",
-"Strawberries", "Cherries", "Olives", "Watermelon", "Kiwi",
-"Peach", "Guava", "Grapefruit", "Lime", "Pumpkin"];
+// const fruits = ["Apple", "Banana", "Coconut", "Grapes", "Pineapple",
+// "Lemon", "Avacado", "Blueberries", "Oranges", "Mango",
+// "Strawberries", "Cherries", "Olives", "Watermelon", "Kiwi",
+// "Peach", "Guava", "Grapefruit", "Lime", "Pumpkin"];
 
 //Exports the fruit function that follows
 export default function HomeScreen({ navigation }) {
+//Database connection to populate the question array
+const [fruits, setFruits] = React.useState([]);
+const getFruits = () => {
+	axios.get('https://node-server-udw2.onrender.com/fruits').then((response) => {
+		console.log(response.data);
+		setFruits(response.data);
+	});
+}
+//NOT SURE WHAT IT'S SUPPOSED TO PASS TO OR IF THIS IS EVEN SPOSED TO BE HERE
+{fruits.map(fruit => {})}
+
 	//The questions are defined in an array with their answers.
 	//Each answer is an element of the fruits array which has been imported in a random order.
 	//This means that the values are always random.
