@@ -27,7 +27,7 @@ function HomeScreen({ navigation }) {
   return (
     <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
       <TTSText style={{ fontSize: 26, fontWeight: "medium" }} phrase="Welcome back" text="Welcome back"/>
-      <TTSText style={{ fontSize: 26, fontWeight: "medium", color: "#00cc00" }} phrase="USERNAME!" text="USERNAME!"/>
+      <TTSText style={{ fontSize: 26, fontWeight: "medium", color: "#00cc00" }} phrase={""+global.fname} text={""+global.fname} />
       <Say phrase="What would you like to do?"/>
 
       {/* Quiz Navigation Button */}

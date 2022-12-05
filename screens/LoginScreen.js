@@ -15,6 +15,8 @@ import { TTSText, Say } from "../Components/TTS.js";
 export default function LogIn({ navigation }) {
   const [user_email, setUserName] = useState();
   const [user_password, setPassword] = useState();
+  const [user, setUser] = useState();
+
 
   const loginCheck = () => {
     axios
@@ -26,12 +28,17 @@ export default function LogIn({ navigation }) {
         },
       })
       .then((response) => {
+        {response.data.map((user) => (
+          global.fname = user.user_fname      
+        ))}
+
         console.log(response.data); //Displays data from the array, if there isn't any. Can use a check if empty to notify user
         if (!Object.keys(response.data).length) {
           // if no data is found alert user
           console.log("no data found");
           Alert.alert("Login", "Invalid Credentials");
         } else {
+          global.email = user_email
           navigation.navigate("Home");
         }
       })
