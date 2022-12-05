@@ -12,33 +12,41 @@ connection.connect(function(err) {
     console.log("Succesfully connected to PlanetScale!");
   });
 
-  //Route example of getting all users
-  app.get('/users', (req, res) => {
-    connection.query("SELECT * FROM user",(err, result) => {
+  // Login user
+  app.get('/login', (req, res) => {
+
+    const email = req.query.user_email; 
+    const password = req.query.user_password;
+    connection.query("SELECT user_email, user_password FROM user WHERE ? AND ?",
+    [email, password], (err, result) => {
       if (err) {
-        console.log(err)
+        console.log(err);
       } else {
-        res.send(result)
+        res.send(result);
       }
     });
   });
 
-  //Route example of adding a user (Does not work)
-  app.post('/create', (req, res) => {
-    const name = req.body.name;
+  // Register user
+  app.post("/createuser", (req, res) => {
+    const fname = req.body.fname;
+    const lname = req.body.lname;
     const age = req.body.age;
-    db.query('INSERT INTO user (user_fname, user_age) VALUES (?,?)',
-      [name, age], (err, result) => {
+    const email = req.body.email;
+    const password = req.body.password;
+  
+    connection.query(
+      "INSERT INTO user (user_fname, user_lname, user_age, user_email, user_password) VALUES (?,?,?,?,?)",
+      [fname, lname, age, email, password],
+      (err, result) => {
         if (err) {
-          console.log(err)
+          console.log(err);
         } else {
           res.json(req.body);
-        }    
-      });
-    });
-app.listen(port, () => {
-    console.log(`Example app listening at http://localhost:${port}`)
-  })
+        }
+      }
+    );
+  });
 
 // getting all fruit
 app.get('/fruits', (req, res) => {
@@ -73,5 +81,7 @@ app.get('/random', (req, res) => {
   });
 })
 
-
+app.listen(port, () => {
+  console.log(`Node server listening`)
+})
 
