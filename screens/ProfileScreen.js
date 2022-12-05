@@ -9,7 +9,7 @@ export default function App() {
             <ScrollView showsVerticalScrollIndicator={false}>
                 {/* Hardcoded values need to be replaced with vars */}
                 <View style={styles.infoContainer}>
-                    <Text style={[styles.text, { fontWeight: "200", fontSize: 36 }]}>Username</Text>
+                    <Text style={[styles.text, { fontWeight: "200", fontSize: 36 }]}>{global.fname}</Text>
                 </View>
 
                 <View style={styles.statsContainer}>
