@@ -1,6 +1,12 @@
 # Tim
 This is a complete overhaul of our navigation system, simplified path for both users and developers
 
+
+PREREQS:
+
+You must have Node.js, NPM or YARN and expo installed to use this:
+
+
 `npx expo install react-native-screens react-native-safe-area-context`
 
 `yarn add @react-navigation/native`
