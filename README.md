@@ -20,4 +20,4 @@ You must have Node.js, NPM or YARN and expo installed to use this:
     
 `yarn install`
 
-`expo run`
+`yarn start`
